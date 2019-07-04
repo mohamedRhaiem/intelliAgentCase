@@ -1,23 +1,11 @@
 import { QueryResult } from 'react-apollo';
-import gql from 'graphql-tag';
 import { OrgQuery } from '../graphql/schema-model';
 import client from '../provider/apollo';
-import { GET_REPOSITORIES_OF_ORGANIZATION } from './repositoryService';
+import { STAR_REPOSITORY,GET_REPOSITORIES_OF_ORGANIZATION } from './requestApollo';
 
 export interface WithRepositoryProps {
   repositoriesFetch: QueryResult & OrgQuery;
 };
-
-const STAR_REPOSITORY = gql`
-  mutation($id: ID!) {
-    addStar(input: { starrableId: $id }) {
-      starrable {
-        id
-        viewerHasStarred
-      }
-    }
-  }
-`;
 
 export async function starRep(id: string): Promise<any> {
   return client.mutate({

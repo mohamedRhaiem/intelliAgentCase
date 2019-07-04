@@ -1,4 +1,4 @@
-import { WithRepositoryProps } from '../service/repositoryService';
+import { WithRepositoryProps } from '../../service/repositoryService';
 import * as React from 'react';
 import Repositories from './repositories';
 

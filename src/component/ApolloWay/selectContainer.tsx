@@ -10,5 +10,4 @@ const mapDispatchToProps = (dispatch, { id, isSelected }) => ({
         }),
 });
 
-
 export default connect(null, mapDispatchToProps)(Select);

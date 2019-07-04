@@ -1,27 +1,10 @@
 import { graphql, QueryResult } from 'react-apollo';
-import gql from 'graphql-tag';
 import { OrgQuery } from '../graphql/schema-model';
+import { GET_REPOSITORIES_OF_ORGANIZATION } from './requestApollo';
 
 export interface WithRepositoryProps {
   repositoriesFetch: QueryResult & OrgQuery;
 };
-
-export const GET_REPOSITORIES_OF_ORGANIZATION = gql`
-  {
-    organization(login: "the-road-to-learn-react") {
-      repositories(first: 20) {
-        edges {
-          node {
-            id
-            name
-            url
-            viewerHasStarred
-          }
-        }
-      }
-    }
-  }
-`;
 
 export const withRepositories =
   graphql(GET_REPOSITORIES_OF_ORGANIZATION,
@@ -29,7 +12,7 @@ export const withRepositories =
       options: () => ({
         variables: {
         },
-        //must
+        //must be cache-and-network to refrech data after mutate
         fetchPolicy: "cache-and-network",
       }),
       name: 'repositoriesFetch',
