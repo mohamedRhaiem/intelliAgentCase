@@ -10,8 +10,7 @@ export interface WithRepositoryProps {
   }
 };
 
-
-export const HigherOrderComponentApproach = (props: WithRepositoryProps) => {
+export const RepositoriesRest = (props: WithRepositoryProps) => {
 
   const {
     repositoriesFetch: { loading, repositories },

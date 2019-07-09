@@ -1,4 +1,4 @@
-import { HigherOrderComponentApproach } from "./repositoriesRest";
+import { RepositoriesRest } from "./repositoriesRest";
 import { withFetching } from "../../rest/service/repositoryService";
 
-export const MainRest = withFetching(HigherOrderComponentApproach);
+export const MainRest = withFetching(RepositoriesRest);

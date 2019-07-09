@@ -1,7 +1,7 @@
 import get from '../provider/api';
 import * as React from 'react';
 
-export function withRepositoriesRest() {
+export function getRepositoriesRest() {
   return get
     .get('/orgs/the-road-to-learn-react/repos');
 }

@@ -5,7 +5,7 @@ import UnStar from './unstarRest';
 const RepositoryRest = ({ node }) => {
     const [show, setShow] = React.useState(false);
     return (
-        <div key={node.id} className="card card-body mb-3">
+        <div className="card card-body mb-3">
             <h4>
                 {node.name}
                 <i
@@ -16,7 +16,7 @@ const RepositoryRest = ({ node }) => {
                     style={{ cursor: 'pointer' }}
                 />
                 {
-                    node.viewerHasStarred ? <UnStar id={node.id} /> : <Star owner={node.owner.login} repo={node.name} />}
+                    node.viewerHasStarred ? <UnStar id={node.id} /> : <Star owner={node.id} repo={node.id} />}
             </h4>
             {show ? (
                 <ul className="list-group">

@@ -4,15 +4,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './component/layout/Header';
 import { MainApollo } from './component/ApolloWay/mainApollo';
 import { MainRest } from './component/RestWay/mainRest';
+import MainMultiWay from './component/MultiWayReduxThunk/mainMultiWayReduxThunk';
 
 const App = () => {
   return (<Router>
     <div className="App">
-      <Header branding="IntelliAgent Effect Side Communication" />
+      <Header branding="IntelliAgent Side Communication" />
       <div className="container">
         <Switch>
           <Route exact path="/" component={MainApollo} />
           <Route exact path="/rest" component={MainRest} />
+          <Route exact path="/multiWayReduxThunk" component={MainMultiWay} />
         </Switch>
       </div>
     </div>
@@ -20,9 +22,3 @@ const App = () => {
 }
 
 export default App;
-
-
-
-// const App = () => {
-//   return <SelectProvider />;
-// }

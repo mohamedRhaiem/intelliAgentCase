@@ -13,7 +13,7 @@ export const RepositoriesApollo: React.SFC<WithRepositoryProps> = (props) => {
     }
     return (
         <React.Fragment>
-            <HeaderTitle title="Apollo Way" />
+            <HeaderTitle title="ApolloWay" />
             <RepositoryListApollo repositories={organization.repositories} />
         </React.Fragment>
     );

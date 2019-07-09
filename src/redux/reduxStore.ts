@@ -1,29 +1,26 @@
-import { createStore, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import rootReducer from './reducers';
+import rootSaga from './sagas';
 
-function repositoryReducer(state: any, action: any) {
-    switch (action.type) {
-        case 'TOGGLE_SELECT_REPOSITORY': {
-            return applyToggleSelectRepository(state, action);
-        }
-        default:
-            return state;
-    }
-}
+const initialState = {};
 
-function applyToggleSelectRepository(state: any, action: any) {
-    const { id, isSelected } = action;
+const middleware = [thunk];
 
-    const selectedRepositoryIds = isSelected
-        ? state.selectedRepositoryIds.filter((itemId: string) => itemId !== id)
-        : state.selectedRepositoryIds.concat(id);
-
-    return { ...state, selectedRepositoryIds };
-}
-
-const initialState = {
-    selectedRepositoryIds: [],
-};
+const sagaMiddleware = createSagaMiddleware();
 
 const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose;
 
-export default createStore(repositoryReducer, initialState as any,composeEnhancers());
+const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+        applyMiddleware(...middleware, sagaMiddleware),
+        composeEnhancers()
+    )
+);
+
+sagaMiddleware.run(rootSaga);
+
+export default store;

@@ -24,8 +24,14 @@ const Header = props => {
 
                         </li>
                         <li className="nav-item">
-                            <Link to="/restApollo" className="nav-link">
-                                RestApollo
+                            <Link to="/multiWayReduxThunk" className="nav-link">
+                                MultiWayReduxThunk
+              </Link>
+
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/multiWayReduxSaga" className="nav-link">
+                                MultiWayReduxSaga
               </Link>
 
                         </li>
