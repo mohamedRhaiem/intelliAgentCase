@@ -1,5 +1,5 @@
 import { QueryResult } from 'react-apollo';
-import { OrgQuery } from '../graphql/schema-model';
+import { OrgQuery } from '../schema-model';
 import client from '../provider/apollo';
 import { STAR_REPOSITORY,GET_REPOSITORIES_OF_ORGANIZATION } from './requestApollo';
 

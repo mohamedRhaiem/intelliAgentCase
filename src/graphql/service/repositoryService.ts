@@ -1,5 +1,5 @@
 import { graphql, QueryResult } from 'react-apollo';
-import { OrgQuery } from '../graphql/schema-model';
+import { OrgQuery } from '../schema-model';
 import { GET_REPOSITORIES_OF_ORGANIZATION } from './requestApollo';
 
 export interface WithRepositoryProps {
