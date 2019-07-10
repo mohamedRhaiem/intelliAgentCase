@@ -8,9 +8,11 @@ import {
 import { getRepositoriesRest } from '../../rest/service/repositoryService';
 import { getRepositoriesApollo } from '../../graphql/service/repositoryService';
 
-export const getRepositories = (type) => async (dispatch) => {
+export const getRepositories = (type?: string) => async (dispatch, getState) => {
+
+    let switcher = type ? type : getState().repository.provider;
     let res;
-    switch (type) {
+    switch (switcher) {
         case CALL_REST:
             res = await getRepositoriesRest();
         case CALL_APOLLO: {

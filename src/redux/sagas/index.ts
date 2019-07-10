@@ -1,8 +1,10 @@
 // @flow
-import { watchGetRepos } from './Repos';
+import repoWatcher from './Repos';
+import providerWatcher from './Provider';
 
 export default function* rootSaga() {
   yield [
-    watchGetRepos(),
+    repoWatcher(),
+    providerWatcher()
   ];
 }

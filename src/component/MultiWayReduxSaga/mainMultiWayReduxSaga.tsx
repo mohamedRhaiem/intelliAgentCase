@@ -1,26 +1,25 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { getRepositories } from '../../redux/actionsThunk/repositoryActions'
 import RepositoryListRest from '../RestWay/repositoryListRest';
 import HeaderTitle from '../layout/HeaderTitle';
+import { getRepositoriesSaga } from '../../redux/sagas/action';
 import SelectProvider from './selectProvider';
 
 interface IRecipeProps {
     repositories: [];
+    provider: number;
     getRepositories(): any;
-    provider: number
 }
 
 class Repositories extends React.Component<IRecipeProps, null> {
     componentDidMount() {
         this.props.getRepositories();
     }
-
     render() {
         const { repositories } = this.props;
         return (
             <React.Fragment>
-                <HeaderTitle title="MultiWayReduxThunk" />
+                <HeaderTitle title="MultiWayReduxSaga" />
                 <SelectProvider />
                 <br></br>
                 <RepositoryListRest repositories={repositories} />
@@ -34,7 +33,11 @@ const mapStateToProps = state => ({
     provider: state.repository.provider
 });
 
+const mapDispatchToProps = {
+    getRepositories: getRepositoriesSaga,
+};
+
 export default connect(
     mapStateToProps,
-    { getRepositories }
+    mapDispatchToProps
 )(Repositories);

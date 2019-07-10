@@ -8,7 +8,8 @@ import {
 
 const initialState = {
     repositories: [],
-    provider: CALL_APOLLO
+    provider: CALL_APOLLO,
+    loading: false
 };
 
 export default function (state = initialState, action) {

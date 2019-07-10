@@ -1,22 +1,31 @@
+import { put, takeEvery, select } from 'redux-saga/effects';
 import {
-  takeLatest,
-} from 'redux-saga/effects';
+  GET_REPOSITORIES,
+  CALL_REST,
+  CALL_APOLLO,
+  INIT_REPOSITORIES,
+  // CHANGE_PROVIDER
+} from '../actionsThunk/types';
 
-// function reposSuccessAction(data: Object, url: string) {
-//   return put({
-//     type: 'REPOS_SUCCESS',
-//     payload: {
-//       repositories: data,
-//       result: data,
-//       url,
-//     },
-//   });
-// }
+import { getRepositoriesRest } from '../../rest/service/repositoryService';
+import { getRepositoriesApollo } from '../../graphql/service/repositoryService';
 
-export function* getRepositories(action) {
-  console.log(action);
+
+function* fetchRepository() {
+  const state = yield select();
+
+  let res;
+  switch (state.repository.provider) {
+    case CALL_REST:
+      res = yield getRepositoriesRest();
+    case CALL_APOLLO: {
+      res = yield getRepositoriesApollo();
+    }
+  }
+
+  yield put({ type: GET_REPOSITORIES, payload: res.data });
 }
 
-export function* watchGetRepos() {
-  yield takeLatest('GET_REPOSITORIES', getRepositories);
+export default function* actionWatcher() {
+  yield takeEvery(INIT_REPOSITORIES, fetchRepository)
 }
